@@ -25,7 +25,8 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["id"])) {
                 $idProductoErr = "ID necesario";
-            }else {
+                
+            } else {
                 $idProducto = test_input($_POST["id"]);
             }
 
@@ -41,7 +42,7 @@
                 $descripcion = test_input($_POST["descripcion"]);
             }
 
-            if (!isset($_POST["my_image"])) {
+            if (empty($_POST["my_image"])) {
                 $new_img_nameErr = "Imagen necesaria";
             } else {
                 $new_img_name = test_input($_POST["my_image"]);
@@ -96,8 +97,8 @@
 <div class="container">
     <h2>Admin</h2>
     <div class="btn-group btn-group-lg">
-        <a class="btn btn-primary btn-lg active"  aria-pressed="true" href="http://localhost:8888/ProyectoFinal/phpadmin/admin.php" role="button">Registrar producto</a>
-        <a class="btn btn-primary" href="http://localhost:8888/ProyectoFinal/phpadmin/adminActualizar.php" role="button">Actualizar producto</a>
+        <a class="btn btn-primary" href="http://localhost:8888/ProyectoFinal/phpadmin/admin.php" role="button">Registrar producto</a>
+        <a class="btn btn-primary btn-lg active" aria-pressed="true" href="http://localhost:8888/ProyectoFinal/phpadmin/adminActualizar.php" role="button">Actualizar producto</a>
         <a class="btn btn-primary" href="http://localhost:8888/ProyectoFinal/phpadmin/adminStock.php" role="button">Ver Stock</a>
         <a class="btn btn-primary" href="#" role="button">Historial de compras</a>
         <a class="btn btn-primary" href="http://localhost:8888/ProyectoFinal/phpadmin/adminUsuarios.php" role="button">Usuarios registrados</a>
@@ -126,7 +127,7 @@
 
         Imagen del producto: <span class="error">* <?php echo $new_img_nameErr;?></span>
         <div class="form-group">
-            <input type="file" name="my_image" class="form-control" value="<?php echo $new_img_name;?>">
+            <input type="file" name="my_image" class="form-control">
         </div>
 
         Precio: 
@@ -211,11 +212,13 @@
 
 
                     //Insertar a DB
-                    $sql = "INSERT INTO Productos VALUES  ('$idProducto', '$nombreProducto', '$descripcion', '$new_img_name' , '$precio', '$cantidad', '$fabricante', '$origen', '$tipo', '$genero');";
+                    //$sql = "INSERT INTO Productos VALUES  ('$idProducto', '$nombreProducto', '$descripcion', '$new_img_name' , '$precio', '$cantidad', '$fabricante', '$origen', '$tipo', '$genero');";
+                    $sql = "UPDATE Productos SET Nombre='$nombreProducto', Descripcion='$descripcion', Fotos='$new_img_name', Precio='$precio', Cantidad_en_almacen='$cantidad', Fabricante='$fabricante', Origen='$origen', Tipo='$tipo', Genero='$genero' WHERE ID_Producto = $idProducto;";
                     if (!mysqli_query($con,$sql)) {
                         die('<br>Error: ' . mysqli_error($con));
+                    }else{
+                        echo "<br>1 record added";
                     }
-                    echo "<br>1 record added";
                     mysqli_close($con);
                     // ///////////////////////////////////////////////////
                     header("Location: adminStock.php");

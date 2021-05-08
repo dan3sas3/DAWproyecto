@@ -8,19 +8,15 @@
   <title>Desplegar</title>
 </head>
 <body>
-<?php 
-          $con = mysqli_connect("localhost:8889","root","root","DAW");
-          $sql = "SELECT Fotos FROM Productos ORDER BY ID_Producto";
-          $res = mysqli_query($con,  $sql);
+  <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+  </form>
 
-          if (mysqli_num_rows($res) > 0) {
-          	while ($images = mysqli_fetch_assoc($res)) {  ?>
-             
-            <div class="alb">
-              <img src="../img/<?=$images['Fotos']?>">
-            </div>
-          		
-<?php } }?>
+  <?php
+    if(isset($_POST['submit'])){
+      header("Location: adminStock.php");
+    }
+?>
   
 </body>
 </html>
