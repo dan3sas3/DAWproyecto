@@ -36,6 +36,7 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="http://localhost:8888/ProyectoFinal/php/aboutUs.html">¿Quiénes somos?</a>
+        <a href="http://localhost:8888/ProyectoFinal/php/productos.php">Productos</a>
     </div>
 
     <!-- Opciones usuario -->
@@ -61,14 +62,70 @@
             <li style="float:left">   <a href="#">  <span class="glyphicon glyphicon-align-justify" style="font-size:15px;cursor:pointer" onclick="openNav()"> </a> </span></li>
             <li style="float:right">  <a href="#">   <span class="glyphicon glyphicon-user" style="font-size:15px;cursor:pointer" onclick="openNav2()">   </a>  </span></li>
             <li style="float:right"> <a href="http://localhost:8888/ProyectoFinal/php/carrito.php"> <span class="glyphicon glyphicon-shopping-cart">  </a></span></li>
-            <li style="float:center"><a href="http://localhost:8888/ProyectoFinal/php/inicio.html">Nombre Compañía </a></li>
+            <li style="float:center"><a href="http://localhost:8888/ProyectoFinal/php/inicio.php">Nombre Compañía </a></li>
         </div>
     </ul>
 
 
     <!-- Body -->
     <br><br>
-    <div class="container">
+    <?php
+        // Crear una conexión
+        $con = mysqli_connect("localhost:8889","root","root","DAW");
+        if (mysqli_connect_errno()) {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+
+        $idP = $_POST['identificador'];
+        $sql = "SELECT * FROM Productos WHERE ID_Producto=$idP";
+        $res = mysqli_query($con,  $sql);
+
+
+        if (mysqli_num_rows($res) > 0) {
+            while ($rows = mysqli_fetch_assoc($res)) { 
+                echo "<div class='container'>";
+                    echo "<div class='row'>";
+                        echo "<div class='col'>";
+                            echo "<h1>" .$rows['Tipo']."</h1>";
+                            echo "<div class='image_selected'>";
+                                ?><img src="../img/<?=$rows['Fotos']?>"><?php
+                            echo "</div>";
+                        echo "</div>";
+                        echo "<div class='col'> <br><br><br><br><br><br>";
+                            echo "<div class='well'>";
+                                echo "<div class='product_name'><h2>" .$rows['Nombre']. "</h2></div>";
+                                echo "<div> <span class='product_price'><h2> $" .$rows['Precio']. " USD</h2></span> </div>";
+                                echo "<hr class='singleline'>";
+                                echo "<div> <span class='product_info'><h4>" .$rows['Descripcion']. "</h4><span><br></div>";
+                            echo "</div>";
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div> <br><br><br><br><br>";
+
+
+                echo "<div class='container-fluid' style=' background-color: #333; padding: 11px;'>";
+                    echo "<div class='row'>";
+                        echo "<div class='col'>";
+                            echo "<h2>Fabricante:</h2>";
+                            echo "<h3>" .$rows['Fabricante']. "</h3>";     
+                        echo "</div>";
+                        echo "<div class='col'>";
+                            echo "<h2>Lugar de Origen:</h2>";
+                            echo "<h3>" .$rows['Origen']. "</h3>";
+                        echo "</div>";
+                        echo "<div class='col'>";
+                            echo "<br><h2>$" .$rows['Precio']." USD</h2>";      
+                        echo "</div>";
+                        echo "<div class='col'>";
+                            echo "<button type='button' class='btn btn-success btn-block'><h2>Añadir al carrito</h2></button><br>";    
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div>";
+            }
+        }?>
+    
+
+    <!-- <div class="container">
         <div class="row">
             <div class="col">
                 <h1>Sunglasses</h1>
@@ -88,6 +145,7 @@
         </div>  
     </div>
 
+    <br><br><br><br><br>
     <div class="container-fluid" style=" background-color: #333; padding: 11px;">
             <div class="row">
                 <div class="col">
@@ -106,6 +164,6 @@
                     <br>
                 </div>
             </div>
-    </div>
+    </div> -->
 </body>
 </html>

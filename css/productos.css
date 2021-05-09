@@ -1,0 +1,66 @@
+/* Some custom styles to beautify this example */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+  body{
+    background-color:#f7f7f7;
+  }
+  .containerB{
+      max-width:1300px;
+      margin:auto;
+      padding-left:25px;
+      padding-right:25px; 
+  } 
+
+  .col-4{
+    flex-basis: 33%;
+    padding:10px;
+    min-width:250px;
+    margin-bottom:50px;
+  }
+  .col-4 img{
+    width:100%;
+    height:110px;
+    object-fit:cover;
+    display:block;
+  }
+  .small-container{
+    max-width:1080px;
+    margin:auto;
+    padding-left:25px;
+    padding-right:25px;
+  }
+  .cuadro{
+    background-color:white;
+    border-radius:5px;
+    width:225px;
+    height:300px;
+    padding:5px;
+  }
+  h1{
+    text-align:center;
+    margin-top:20px;
+    font-family: 'EB Garamond', serif;
+  }
+  h4, p{
+    text-align:center;
+    padding:25px;
+    font-family: 'EB Garamond', serif;
+  }
+  header{
+    top:0;
+    position:sticky;
+    object-fit: cover;
+    z-index:999;
+  }
+  .btn-group{
+    margin:auto;
+    width:50%;
+  }
+  .btn{
+    background-color:#D9DEDE;
+    color:black;
+    font-family: 'EB Garamond', serif;
+  }
