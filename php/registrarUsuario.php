@@ -1,26 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/stickyMenu.css">
-    <link rel="stylesheet" type="text/css" href="../css/sideMenu.css">
-    <link rel="stylesheet" type="text/css" href="../css/sideMenuUsuario.css">
-    <script type="text/javascript" src="../js/sideMenu.js"></script>
-    <script type="text/javascript" src="../js/sideMenuUsuario.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    
+<?php
+  require "header.php";
+ ?>
+ <head>
     <style>
         .error {color: #FF0000;}
     </style>
-    
     <title>Registrar</title>
-   
+
 </head>
-<body>
+<main>
     <?php
         // define variables and set to empty values
         $NombreUsuario = $email = $contraseña = $fecha = $tarjeta = $direccion = $verificar = "";
@@ -79,40 +67,6 @@
         }
     ?>
 
-    <!-- Side menu -->
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="http://localhost:8888/ProyectoFinal/php/aboutUs.html">¿Quiénes somos?</a>
-        <a href="http://localhost:8888/ProyectoFinal/php/productos.php">Productos</a>
-    </div>
-
-    <!-- Opciones usuario -->
-    <div id="mySidenav2" class="sidenav2">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
-        <h3>Iniciar sesión</h3>
-        <form role="form">
-            <div class="form-group">
-                <input type="email" class="form-control" id="email" placeholder="Ingrese su e-mail">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-
-        <a href="http://localhost:8888/ProyectoFinal/php/registrarUsuario.php">Registrarse</a>
-    </div>
-
-    <!-- Sticky menu -->
-    <ul>
-        <div class="container">
-            <li style="float:left">   <a href="#">  <span class="glyphicon glyphicon-align-justify" style="font-size:15px;cursor:pointer" onclick="openNav()"> </a> </span></li>
-            <li style="float:right">  <a href="#">   <span class="glyphicon glyphicon-user" style="font-size:15px;cursor:pointer" onclick="openNav2()">   </a>  </span></li>
-            <li style="float:right"> <a href="http://localhost:8888/ProyectoFinal/php/carrito.php"> <span class="glyphicon glyphicon-shopping-cart">  </a></span></li>
-            <li style="float:center"><a href="http://localhost:8888/ProyectoFinal/php/inicio.php">Nombre Compañía </a></li>
-        </div>
-    </ul>
-
     <!-- Body -->
     <div class="container">
         <h2>Registrar</h2>
@@ -156,21 +110,17 @@
 
 
     <?php
-        if(isset($_POST['submit']) 
+        if(isset($_POST['submit'])
         && !empty($_POST["nombre"]) && isset($_POST["fecha"]) && !empty($_POST["email"]) && !empty($_POST["tarjeta"]) && !empty($_POST["direccion"]) && !empty($_POST["contraseña"])
         ){
-            
+
             //////////////////////////////////////////////////////////////////////////////////
             // Crear una conexión
-
-
-            $con = mysqli_connect("localhost:8889","root","root","DAW");
-
+            include 'conexion.php';
+            $con = OpenCon();
             // Check connection
             if (mysqli_connect_errno()) {
                 echo "Failed to connect to MySQL: " . mysqli_connect_error();
-            }else{
-                echo "Connected to MySQL: ";
             }
 
             // escape variables for security
@@ -181,21 +131,36 @@
             $direccion = mysqli_real_escape_string($con, $_POST['direccion']);
             $contraseña = mysqli_real_escape_string($con, $_POST['contraseña']);
 
-            // //Insertar a DB
-            $sql = "INSERT INTO Usuario (Nombre_del_usuario, Correo_electronico, Contraseña, Fecha_de_Nacimiento, Numero_de_tarjeta_bancaria, Direccion_Postal) VALUES  ('$NombreUsuario', '$email', '$contraseña', '$fecha' , '$tarjeta', '$direccion');";
-
-            if (!mysqli_query($con,$sql)) {
-                die('<br>Error: ' . mysqli_error($con));
+            $sql="SELECT Correo_electronico from usuario where Correo_electronico=?";
+            $stmt = mysqli_stmt_init($con);
+            if(!mysqli_stmt_prepare($stmt, $sql)){
+              echo "Failed to connect to MySQL: " . mysqli_connect_error();
+              exit();
+            }else{
+              mysqli_stmt_bind_param($stmt, "s", $email);
+              mysqli_stmt_execute($stmt);
+              mysqli_stmt_store_result($stmt);
+              $resultCheck = mysqli_stmt_num_rows($stmt);
+              if($resultCheck>0){
+              echo "<p style=\"color:red; margin-left:125px;\">*Email ya utilizado, pruebe con otro</p>";
+                exit();
+              }else{
+                  $sql = "INSERT INTO Usuario (Nombre_del_usuario, Correo_electronico, Contraseña, Fecha_de_Nacimiento, Numero_de_tarjeta_bancaria, Direccion_Postal) VALUES (?,?,?,?,?,?)";
+                  $stmt = mysqli_stmt_init($con);
+                  if(!mysqli_stmt_prepare($stmt, $sql)){
+                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                    exit();
+                  }else{
+                    $hashedPwd = password_hash($contraseña, PASSWORD_DEFAULT);
+                    mysqli_stmt_bind_param($stmt, "ssssis", $NombreUsuario, $email, $hashedPwd, $fecha, $tarjeta, $direccion);
+                    mysqli_stmt_execute($stmt);
+                    echo "<br>1 record added";
+                    mysqli_close($con);
+              }
             }
-            
-            echo "<br>1 record added";
-            mysqli_close($con);
-
-
-            header("Location: inicio.php");
-            /////////////////////////////////////////////////////////
-            
+          }
         }
     ?>
+  </main>
 </body>
 </html>

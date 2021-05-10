@@ -25,7 +25,7 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["id"])) {
                 $idProductoErr = "ID necesario";
-                
+
             } else {
                 $idProducto = test_input($_POST["id"]);
             }
@@ -97,11 +97,11 @@
 <div class="container">
     <h2>Admin</h2>
     <div class="btn-group btn-group-lg">
-        <a class="btn btn-primary" href="http://localhost:8888/ProyectoFinal/phpadmin/admin.php" role="button">Registrar producto</a>
-        <a class="btn btn-primary btn-lg active" aria-pressed="true" href="http://localhost:8888/ProyectoFinal/phpadmin/adminActualizar.php" role="button">Actualizar producto</a>
-        <a class="btn btn-primary" href="http://localhost:8888/ProyectoFinal/phpadmin/adminStock.php" role="button">Ver Stock</a>
-        <a class="btn btn-primary" href="#" role="button">Historial de compras</a>
-        <a class="btn btn-primary" href="http://localhost:8888/ProyectoFinal/phpadmin/adminUsuarios.php" role="button">Usuarios registrados</a>
+      <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/admin.php" role="button">Registrar producto</a>
+      <a class="btn btn-primary btn-lg active"  aria-pressed="true" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminActualizar.php" role="button">Actualizar producto</a>
+      <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminStock.php" role="button">Ver Stock</a>
+      <a class="btn btn-primary" href="#" role="button">Historial de compras</a>
+      <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminUsuarios.php" role="button">Usuarios registrados</a>
     </div>
 </div>
 
@@ -109,17 +109,17 @@
     <br><br>
     <p><span class="error">* campo requerido.</span></p>
     <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        ID Producto: 
+        ID Producto:
         <div class="form-group">
             <input type="number" min="0" name="id" class="form-control" value="<?php echo $idProducto;?>">
             <span class="error">* <?php echo $idProductoErr;?></span>
         </div>
-        Nombre Producto: 
+        Nombre Producto:
         <div class="form-group">
             <input type="texto" name="nombre" class="form-control" value="<?php echo $nombreProducto;?>">
             <span class="error">* <?php echo $nombreProductoErr;?></span>
         </div>
-        Descripción Producto: 
+        Descripción Producto:
         <div class="form-group">
             <input type="texto" name="descripcion" class="form-control" value="<?php echo $descripcion;?>">
             <span class="error">* <?php echo $descripcionErr;?></span>
@@ -130,22 +130,22 @@
             <input type="file" name="my_image" class="form-control">
         </div>
 
-        Precio: 
+        Precio:
         <div class="form-group">
             <input type="number" min="0" step="0.01" name="precio" class="form-control" value="<?php echo $precio;?>">
             <span class="error">* <?php echo $precioErr;?></span>
         </div>
-        Cantidad en almacén: 
+        Cantidad en almacén:
         <div class="form-group">
             <input type="number" min="0" step="1.0" name="cantidad" class="form-control" value="<?php echo $cantidad;?>">
             <span class="error">* <?php echo $cantidadErr;?></span>
         </div>
-        Fabricante del Producto: 
+        Fabricante del Producto:
         <div class="form-group">
             <input type="text" name="fabricante" class="form-control" value="<?php echo $fabricante;?>">
             <span class="error">* <?php echo $fabricanteErr;?></span>
         </div>
-        Origen del Producto: 
+        Origen del Producto:
         <div class="form-group">
             <input type="text" name="origen" class="form-control" value="<?php echo $origen;?>">
             <span class="error">* <?php echo $origenErr;?></span>
@@ -160,7 +160,7 @@
             <input type="radio" name="genero" <?php if (isset($genero) && $genero == "Hombre") echo "checked";?> value="Hombre">Hombre<br>
             <input type="radio" name="genero" <?php if (isset($genero) && $genero=="Mujer") echo "checked";?> value="Mujer">Mujer
         </div>
-        
+
         <input type="submit" name="submit" class="btn btn-primary" value="Submit">
     </form>
 </div>
@@ -168,7 +168,8 @@
 <?php
     if(isset($_POST['submit']) && !empty($_POST["id"]) && !empty($_POST["nombre"]) && !empty($_POST["descripcion"]) && isset($_FILES['my_image']) && !empty($_POST["precio"]) && !empty($_POST["cantidad"]) && !empty($_POST["fabricante"]) && !empty($_POST["origen"]) && isset($_POST["tipo"]) && isset($_POST["genero"])){
         // Crear una conexión
-        $con = mysqli_connect("localhost:8889","root","root","DAW");
+        include 'conexion.php';
+        $con = OpenCon();
 
         // Check connection
         if (mysqli_connect_errno()) {
@@ -194,8 +195,8 @@
         $img_name = $_FILES['my_image']['name'];
         $img_size = $_FILES['my_image']['size'];
         $tmp_name = $_FILES['my_image']['tmp_name'];
-        $error = $_FILES['my_image']['error'];      
-        
+        $error = $_FILES['my_image']['error'];
+
         if($error === 0){
             if($img_size > 12500000){
                 $em = "Archivo demasiado grande";

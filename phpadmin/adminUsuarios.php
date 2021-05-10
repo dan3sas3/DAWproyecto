@@ -15,18 +15,19 @@
         <div class="container">
             <h2>Admin</h2>
             <div class="btn-group btn-group-lg">
-                <a class="btn btn-primary" href="http://localhost:8888/ProyectoFinal/phpadmin/admin.php" role="button">Registrar producto</a>
-                <a class="btn btn-primary" href="http://localhost:8888/ProyectoFinal/phpadmin/adminActualizar.php" role="button">Actualizar producto</a>
-                <a class="btn btn-primary" href="http://localhost:8888/ProyectoFinal/phpadmin/adminStock.php" role="button">Ver Stock</a>
-                <a class="btn btn-primary" href="#" role="button">Historial de compras</a>
-                <a class="btn btn-primary btn-lg active" aria-pressed="true" href="http://localhost:8888/ProyectoFinal/phpadmin/adminUsuarios.php" role="button">Usuarios registrados</a>
+              <a class="btn btn-primary btn-lg" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/admin.php" role="button">Registrar producto</a>
+              <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminActualizar.php" role="button">Actualizar producto</a>
+              <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminStock.php" role="button">Ver Stock</a>
+              <a class="btn btn-primary" href="#" role="button">Historial de compras</a>
+              <a class="btn btn-primary btn-lg active"  aria-pressed="true" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminUsuarios.php" role="button">Usuarios registrados</a>
             </div>
         </div>
 
         <?php
             //----------------------------------------------------  SQL  -----------------------------------------------------------
             // Crear una conexión
-            $con = mysqli_connect("localhost:8889","root","root","DAW");
+            include 'conexion.php';
+            $con = OpenCon();
 
             // Check connection
             if (mysqli_connect_errno()) {
@@ -36,7 +37,7 @@
             $result = mysqli_query($con,"SELECT * FROM Usuario;");
             echo "<div class='container'>
                     <table class='table table-striped'>
-                        <thead>    
+                        <thead>
                             <tr>
                                 <th>Correo electrónico</th>
                                 <th>Nombre completo del usuario</th>
@@ -46,7 +47,7 @@
                                 <th>Contraseña</th>
                             </tr>
                         </thead>
-                        
+
                         <tbody>";
 
             while($row = mysqli_fetch_array($result)) {
@@ -66,4 +67,3 @@
         ?>
     </body>
   </html>
-      

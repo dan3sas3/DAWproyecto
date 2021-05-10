@@ -1,77 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<?php
+  require "header.php";
+ ?>
+ <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-    <link rel="stylesheet" type="text/css" href="../css/stickyMenu.css">
-    <link rel="stylesheet" type="text/css" href="../css/sideMenu.css">
-    <link rel="stylesheet" type="text/css" href="../css/sideMenuUsuario.css">
-    <script type="text/javascript" src="../js/sideMenu.js"></script>
-    <script type="text/javascript" src="../js/sideMenuUsuario.js"></script>
-
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-
     <style>
         .container-fluid{
             color: white;
         }
     </style>
-
-
     <title>Producto</title>
 </head>
-<body>
-    <!-- Side menu -->
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="http://localhost:8888/ProyectoFinal/php/aboutUs.html">¿Quiénes somos?</a>
-        <a href="http://localhost:8888/ProyectoFinal/php/productos.php">Productos</a>
-    </div>
-
-    <!-- Opciones usuario -->
-    <div id="mySidenav2" class="sidenav2">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
-        <h3>Iniciar sesión</h3>
-        <form role="form">
-            <div class="form-group">
-                <input type="email" class="form-control" id="email" placeholder="Ingrese su e-mail">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-
-        <a href="http://localhost:8888/ProyectoFinal/php/registrarUsuario.php">Registrarse</a>
-    </div>
-
-    <!-- Sticky menu -->
-    <ul>
-        <div class="container">
-            <li style="float:left">   <a href="#">  <span class="glyphicon glyphicon-align-justify" style="font-size:15px;cursor:pointer" onclick="openNav()"> </a> </span></li>
-            <li style="float:right">  <a href="#">   <span class="glyphicon glyphicon-user" style="font-size:15px;cursor:pointer" onclick="openNav2()">   </a>  </span></li>
-            <li style="float:right"> <a href="http://localhost:8888/ProyectoFinal/php/carrito.php"> <span class="glyphicon glyphicon-shopping-cart">  </a></span></li>
-            <li style="float:center"><a href="http://localhost:8888/ProyectoFinal/php/inicio.php">Nombre Compañía </a></li>
-        </div>
-    </ul>
-
-
+  <main>
     <!-- Body -->
     <br><br>
     <?php
         // Crear una conexión
-        $con = mysqli_connect("localhost:8889","root","root","DAW");
+        include 'conexion.php';
+        $con = OpenCon();
         if (mysqli_connect_errno()) {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
@@ -82,7 +34,7 @@
 
 
         if (mysqli_num_rows($res) > 0) {
-            while ($rows = mysqli_fetch_assoc($res)) { 
+            while ($rows = mysqli_fetch_assoc($res)) {
                 echo "<div class='container'>";
                     echo "<div class='row'>";
                         echo "<div class='col'>";
@@ -107,23 +59,25 @@
                     echo "<div class='row'>";
                         echo "<div class='col'>";
                             echo "<h2>Fabricante:</h2>";
-                            echo "<h3>" .$rows['Fabricante']. "</h3>";     
+                            echo "<h3>" .$rows['Fabricante']. "</h3>";
                         echo "</div>";
                         echo "<div class='col'>";
                             echo "<h2>Lugar de Origen:</h2>";
                             echo "<h3>" .$rows['Origen']. "</h3>";
                         echo "</div>";
                         echo "<div class='col'>";
-                            echo "<br><h2>$" .$rows['Precio']." USD</h2>";      
+                            echo "<br><h2>$" .$rows['Precio']." USD</h2>";
                         echo "</div>";
                         echo "<div class='col'>";
-                            echo "<button type='button' class='btn btn-success btn-block'><h2>Añadir al carrito</h2></button><br>";    
+                            echo "<button type='button' class='btn btn-success btn-block'><h2>Añadir al carrito</h2></button><br>";
                         echo "</div>";
                     echo "</div>";
                 echo "</div>";
             }
         }?>
-    
+      </main>
+</body>
+</html>
 
     <!-- <div class="container">
         <div class="row">
@@ -142,7 +96,7 @@
                     <div> <span class="product_info"><h4>EMI starts at ₹ 2,000. No Cost EMI Available</h4><span><br></div>
                 </div>
             </div>
-        </div>  
+        </div>
     </div>
 
     <br><br><br><br><br>
@@ -165,5 +119,3 @@
                 </div>
             </div>
     </div> -->
-</body>
-</html>
