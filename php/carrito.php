@@ -2,6 +2,7 @@
   require "header.php"
  ?>
  <script type="text/javascript" src="../js/carrito.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
  <main>
     <!-- Body -->
     <div class="container">
@@ -41,7 +42,7 @@
         </div>
 
         <br><br>
-        <button type="button" class="btn btn-success">Ir a pagar</button>
+        <button type="button" class="btn btn-success">Comprar</button>
 
     </div>
   </main>

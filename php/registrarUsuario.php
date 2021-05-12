@@ -154,7 +154,7 @@
                     $hashedPwd = password_hash($contraseña, PASSWORD_DEFAULT);
                     mysqli_stmt_bind_param($stmt, "ssssis", $NombreUsuario, $email, $hashedPwd, $fecha, $tarjeta, $direccion);
                     mysqli_stmt_execute($stmt);
-                    echo "<br>1 record added";
+                    header("Location: inicio.php");
                     mysqli_close($con);
               }
             }

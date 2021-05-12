@@ -7,7 +7,7 @@
     $password = $_POST['passwd'];
 
     if(empty($email)||empty($password)){
-      header("Location: ../inicio.php?error=camposVacios");
+      header("Location: ../inicio.php?error=camposVacios"); #mejorar
       exit();
     }
     else{
