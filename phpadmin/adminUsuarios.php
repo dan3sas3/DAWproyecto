@@ -44,7 +44,6 @@
                                 <th>Fecha de nacimiento</th>
                                 <th>Tarjeta bancaria</th>
                                 <th>Dirección Postal</th>
-                                <th>Contraseña</th>
                             </tr>
                         </thead>
 
@@ -57,7 +56,6 @@
                 echo "<td>" . $row['Fecha_de_Nacimiento'] . "</td>";
                 echo "<td>" . $row['Numero_de_tarjeta_bancaria'] . "</td>";
                 echo "<td>" . $row['Direccion_Postal'] . "</td>";
-                echo "<td>" . $row['Contraseña'] . "</td>";
                 echo "</tr>";
             }
 
