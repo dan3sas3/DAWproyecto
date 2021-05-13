@@ -36,12 +36,10 @@
   h1{
     text-align:center;
     margin-top:20px;
-    font-family: 'EB Garamond', serif;
   }
   h4, p{
     text-align:center;
     padding:25px;
-    font-family: 'EB Garamond', serif;
   }
   .btn-group{
     margin:auto;
@@ -51,7 +49,6 @@
   .btn{
     background-color:#D9DEDE;
     color:black;
-    font-family: 'EB Garamond', serif;
   }
   .btn.active {
   background-color: #666;

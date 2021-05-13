@@ -99,8 +99,8 @@
     <div class="btn-group btn-group-lg">
       <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/admin.php" role="button">Registrar producto</a>
       <a class="btn btn-primary btn-lg active"  aria-pressed="true" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminActualizar.php" role="button">Actualizar producto</a>
-      <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminStock.php" role="button">Ver Stock</a>
-      <a class="btn btn-primary" href="#" role="button">Historial de compras</a>
+      <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin//adminStock.php" role="button">Ver Stock</a>
+      <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminHistorial.php" role="button">Historial de compras</a>
       <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminUsuarios.php" role="button">Usuarios registrados</a>
     </div>
 </div>
