@@ -17,6 +17,15 @@
         *{
           font-family: 'Poppins', sans-serif;
         }
+        .botones{
+            margin:auto;
+            width:50%;
+            padding: 5px;
+            text-align: center;
+            font-size: 20px;
+          }
+
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -32,27 +41,54 @@
         }
     </script>
 </head>
+<?php
+  if (isset($_POST['lentes'])){
+    $lentes=$_POST['lentes'];
+  }else{
+    $lentes="";
+  }
+ ?>
     <!-- Filtro -->
     <div class="header">
         <h1>Productos</h1><br>
     </div>
-  </main>
-</body>
-</html>
+    <div class='botones'>
+      <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <input style="display:inline;" type='radio' name='lentes' <?php if ($lentes=="Eyeglasses") echo "checked";?> value='Eyeglasses'>Eyeglasses<p style="display:inline;">                              </p>
+        <input style="display:inline;" type='radio' name='lentes' <?php if ($lentes=="Sunglasses") echo "checked";?> value='Sunglasses'>Sunglasses<p style="display:inline;">                              </p>
+        <input style="display:inline;" type='radio' name='lentes' <?php if ($lentes=="") echo "checked";?> value='all'>Todos
+        <br><br>
+        <button style="width:25%;" type='submit'>Filtrar</button>
+        <br><br>
+      </form>
+    </div>
+<main>
 
 <!-- Productos -->
-<?php
-    // Crear una conexión
-    include 'conexion.php';
-    $con = OpenCon();
-    if (mysqli_connect_errno()) {
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    }
 
+<?php
+  #para el filtrp
+  include 'conexion.php';
+  $con = OpenCon();
+  if (mysqli_connect_errno()) {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  $lentes;
+  if (empty($_POST["lentes"])) {
+    $lentes="";
+  }else{
+    $lentes = $_POST["lentes"];
+  }
+  if($lentes=='Eyeglasses'){
+    $sql = "SELECT ID_Producto, Nombre, Fotos, Precio, Tipo FROM Productos WHERE Tipo='Eyeglasses'";
+  }else if($lentes=='Sunglasses'){
+    $sql = "SELECT ID_Producto, Nombre, Fotos, Precio, Tipo FROM Productos WHERE Tipo='Sunglasses'";
+  }else{
     $sql = "SELECT ID_Producto, Nombre, Fotos, Precio, Tipo FROM Productos";
-    $res = mysqli_query($con,  $sql);
-    $contador = 0;
-    $idP = "";
+  }
+  $res = mysqli_query($con,  $sql);
+  $contador = 0;
+  $idP = "";
 
             echo "<center><div class='container'><div class='containerB'>";
                 echo "<div class='categories'>";
@@ -86,4 +122,6 @@
                 echo "</div>";
             echo "</div></div></center>";
 ?>
+</body>
+</html>
 </main>

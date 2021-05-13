@@ -178,29 +178,40 @@
                 </div>
 
                 <?php
-                $bandera = FALSE;
+                $bandera = 0;
                 // escape variables for security
                 if(isset($_POST['nombre'])){
-                    $NombreUsuario = mysqli_real_escape_string($con, $_POST['nombre']);
+                  $NombreUsuario = mysqli_real_escape_string($con, $_POST['nombre']);
+                }else{
+                  $bandera = 1;
                 }
                 if(isset($_POST['fecha'])){
                     $fecha = mysqli_real_escape_string($con, $_POST['fecha']);
+                }else{
+                  $bandera = 1;
                 }
                 if(isset($_POST['tarjeta'])){
                     $tarjeta = mysqli_real_escape_string($con, $_POST['tarjeta']);
+                }else{
+                  $bandera = 1;
                 }
                 if(isset($_POST['direccion'])){
-                    $direccion = mysqli_real_escape_string($con, $_POST['direccion']);
+                  $direccion = mysqli_real_escape_string($con, $_POST['direccion']);
+                }else{
+                  $bandera = 1;
                 }
-                $sql="UPDATE Usuario SET Nombre_del_usuario=?, Fecha_de_Nacimiento=?,  Numero_de_tarjeta_bancaria=?, Direccion_Postal=? WHERE Correo_electronico=?";
-                $stmt=mysqli_stmt_init($con);
-                if(!mysqli_stmt_prepare($stmt, $sql)){
-                    echo "Error con la base de datos";
-                }
-                else{
-                    mysqli_stmt_bind_param($stmt, "ssiss", $NombreUsuario, $fecha, $tarjeta, $direccion, $usuario);
-                    mysqli_stmt_execute($stmt);
-                    mysqli_close($con);
+                if($bandera==0){
+                  $sql="UPDATE Usuario SET Nombre_del_usuario=?, Fecha_de_Nacimiento=?,  Numero_de_tarjeta_bancaria=?, Direccion_Postal=? WHERE Correo_electronico=?";
+                  $stmt=mysqli_stmt_init($con);
+                  if(!mysqli_stmt_prepare($stmt, $sql)){
+                      echo "Error con la base de datos";
+                  }
+                  else{
+                      mysqli_stmt_bind_param($stmt, "ssiss", $NombreUsuario, $fecha, $tarjeta, $direccion, $usuario);
+                      mysqli_stmt_execute($stmt);
+                      mysqli_close($con);
+                      echo "<script type='text/javascript'>window.top.location='http://localhost/PHPProjects/DAWproyecto-main/php/usuario.php';</script>"; exit;
+                  }
                 }
                 ?>
         </div>

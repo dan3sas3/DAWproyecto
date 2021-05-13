@@ -222,7 +222,7 @@
                     }
                     mysqli_close($con);
                     // ///////////////////////////////////////////////////
-                    header("Location: adminStock.php");
+                    echo "<script type='text/javascript'>window.top.location='http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminStock.php';</script>"; exit;
                 }else{
                     $em = "<br>Tipo de archivo inválido";
                     echo ($em);

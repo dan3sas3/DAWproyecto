@@ -12,6 +12,19 @@
         *{
           font-family: 'Poppins', sans-serif;
         }
+        .login {
+          height: 200px;
+          position: relative;
+          border: 3px solid blue;
+        }
+        .center {
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+        }
     </style>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/stickyMenu.css">
@@ -49,10 +62,14 @@
                   <a href="http://localhost/PHPProjects/DAWproyecto-main/php/registrarUsuario.php">Registrarse</a>
               </form>';
             }else{
+              echo "<div class='login'>";
+              echo "<div class='center'>";
               echo  '<a style="font-size:15px;" href="http://localhost/PHPProjects/DAWproyecto-main/php/usuario.php">'.$_SESSION['mail'].'</a>';
               echo '<form role="form" action="includes/logout.inc.php" method="post">
-              <center> <button type="submit" class="btn btn-default" name="logout-submit">Logout</button></center>
+              <center><button type="submit" class="btn btn-default" name="logout-submit">Logout</button></center>
               </form>';
+              echo "</div>";
+              echo "</div>";
             }
           ?>
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
