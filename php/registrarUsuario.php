@@ -154,7 +154,7 @@
                     $hashedPwd = password_hash($contraseña, PASSWORD_DEFAULT);
                     mysqli_stmt_bind_param($stmt, "ssssis", $NombreUsuario, $email, $hashedPwd, $fecha, $tarjeta, $direccion);
                     mysqli_stmt_execute($stmt);
-                    header("Location: inicio.php");
+                    echo "<script type='text/javascript'>window.top.location='http://localhost/PHPProjects/DAWproyecto-main/php/inicio.php';</script>"; exit;
                     mysqli_close($con);
               }
             }
