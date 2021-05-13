@@ -29,8 +29,8 @@
             <div class="btn-group btn-group-lg">
               <a class="btn btn-primary"  href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/admin.php" role="button">Registrar producto</a>
               <a class="btn btn-primary"  href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminActualizar.php" role="button">Actualizar producto</a>
-              <a class="btn btn-primary btn-lg active"  aria-pressed="true" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminStock.php" role="button">Ver Stock</a>
-              <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminHistorial.php" role="button">Historial de compras</a>
+              <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminStock.php" role="button">Ver Stock</a>
+              <a class="btn btn-primary btn-lg active" aria-pressed="true" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminHistorial.php" role="button">Historial de compras</a>
               <a class="btn btn-primary" href="http://localhost/PHPProjects/DAWproyecto-main/phpadmin/adminUsuarios.php" role="button">Usuarios registrados</a>
             </div>
         </div>
@@ -45,7 +45,7 @@
                 echo "Failed to connect to MySQL: " . mysqli_connect_error();
             }
             //$sqlFotos = "SELECT Fotos FROM Productos ORDER BY ID_Producto";
-            $sql = "SELECT * FROM Productos";
+            $sql = "SELECT * FROM historial_de_compras";
             //$resFotos = mysqli_query($con,  $sqlFotos);
             $res = mysqli_query($con,  $sql);
 
@@ -53,16 +53,10 @@
                     <table class='table table-striped'>
                         <thead>
                             <tr>
+                                <th>Correo electrónico</th>
                                 <th>ID del producto</th>
-                                <th>Nombre del producto</th>
-                                <th>Descripción del producto</th>
-                                <th>Foto</th>
-                                <th>Precio</th>
-                                <th>Cantidad en almacén</th>
-                                <th>Fabricante</th>
-                                <th>Lugar de origen</th>
-                                <th>Tipo de lente</th>
-                                <th>Género</th>
+                                <th>Cantidad del producto</th>
+                                <th>Precio total del producto</th>
                             </tr>
                         </thead>
 
@@ -73,23 +67,10 @@
             if (mysqli_num_rows($res) > 0) {
                 while ($images = mysqli_fetch_assoc($res)) {
                     echo "<tr>";
+                    echo "<td>" . $images['CorreoUsuario'] . "</td>";
                     echo "<td>" . $images['ID_Producto'] . "</td>";
-                    echo "<td>" . $images['Nombre'] . "</td>";
-                    echo "<td>" . $images['Descripcion'] . "</td>";
-
-                    echo "<td>" ;
-        ?>
-            <div class="alb">
-                <img src="../img/<?=$images['Fotos']?>">
-            </div>
-        <?php
-                    echo "</td>";
-                    echo "<td>" . $images['Precio'] . "</td>";
-                    echo "<td>" . $images['Cantidad_en_almacen'] . "</td>";
-                    echo "<td>" . $images['Fabricante'] . "</td>";
-                    echo "<td>" . $images['Origen'] . "</td>";
-                    echo "<td>" . $images['Tipo'] . "</td>";
-                    echo "<td>" . $images['Genero'] . "</td>";
+                    echo "<td>" . $images['Cantidad'] . "</td>";
+                    echo "<td>" . $images['PrecioTotal'] . "</td>";
                     echo "</tr>";
                 }
                 echo "</tbody> </table> </div>";

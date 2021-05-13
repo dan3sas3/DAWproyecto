@@ -27,11 +27,11 @@
         #mysqli_stmt_store_result($stmt);
         $result = mysqli_stmt_get_result($stmt);
         #mysqli_stmt_store_result($stmt);
-        $resultCheck = $result->num_rows;
+        $resultCheck = $result->num_rows;#checar si el usuario tiene datos en su carrito
         if($resultCheck==0){
             $flag=1;
         }
-        echo "<div class='container' ng-app='' ng-init='x0=1; x1=1; x2=1; x3=1; x4=1; x5=1'>
+        echo "<div class='container' ng-app='' ng-init='x0=1; x1=1; x2=1; x3=1; x4=1; x5=1; x6=1; x7=1'>
               <h2>Lista del carrito</h2>
               <p>Estos son los artículos que llevas en tu carrito de compras. Puedes modificarlo si gustas</p>
               <table class='table' id='myTable'>
