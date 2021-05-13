@@ -160,7 +160,7 @@
                     $hashedPwd = password_hash($contraseña, PASSWORD_DEFAULT);
                     mysqli_stmt_bind_param($stmt, "ssssis", $NombreUsuario, $email, $hashedPwd, $fecha, $tarjeta, $direccion);
                     mysqli_stmt_execute($stmt);
-                    echo "<script type='text/javascript'>window.top.location='http://localhost/PHPProjects/DAWproyecto-main/php/inicio.php';</script>"; exit;
+                    echo "<script type='text/javascript'>window.top.location='http://localhost/PHPProjects/DAWproyecto-main/php/registroCorrecto.php';</script>"; exit;
                     mysqli_close($con);
               }
             }

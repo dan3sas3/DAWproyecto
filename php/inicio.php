@@ -105,7 +105,8 @@
                     <div class="carousel-caption">
                         <h2 class="animated bounceInRight" style="animation-delay: 1s">K&D <span> Peoples</span></h2>
                         <h3 class="animated bounceInLeft" style="animation-delay: 2s">La nueva manera de ver la vida</h3>
-                        <p class="animated bounceInRight" style="animation-delay: 3s"><a href="http://localhost:8888/ProyectoFinal/php/aboutUs.php">¿Quiénes somos?</a></p>
+                        <p class="animated zoomIn" style="animation-delay: 3s"><a href="http://localhost/PHPProjects/DAWproyecto-main/php/productos.php">Ver Productos</a></p>
+                        <p class="animated zoomIn" style="animation-delay: 3s"><a href="http://localhost/PHPProjects/DAWproyecto-main/php/aboutUs.php">¿Quiénes somos?</a></p>
                     </div>
                 </div>
 
@@ -114,7 +115,8 @@
                     <div class="carousel-caption">
                         <h2 class="animated slideInDown" style="animation-delay: 1s">K&D <span> Peoples</span></h2>
                         <h3 class="animated fadeInUp" style="animation-delay: 2s">La nueva manera de ver la vida</h3>
-                        <p class="animated zoomIn" style="animation-delay: 3s"><a href="http://localhost:8888/ProyectoFinal/php/aboutUs.php">¿Quiénes somos?</a></p>
+                        <p class="animated zoomIn" style="animation-delay: 3s"><a href="http://localhost/PHPProjects/DAWproyecto-main/php/productos.php">Ver Productos</a></p>
+                        <p class="animated zoomIn" style="animation-delay: 3s"><a href="http://localhost/PHPProjects/DAWproyecto-main/php/aboutUs.php">¿Quiénes somos?</a></p>
                     </div>
                 </div>
                 <div class="item">
@@ -122,7 +124,8 @@
                     <div class="carousel-caption">
                         <h2 class="animated zoomIn" style="animation-delay: 1s">K&D <span> Peoples</span></h2>
                         <h3 class="animated fadeInLeft" style="animation-delay: 2s">La nueva manera de ver la vida</h3>
-                        <p class="animated zoomIn" style="animation-delay: 3s"><a href="http://localhost:8888/ProyectoFinal/php/aboutUs.php">¿Quiénes somos?</a></p>
+                        <p class="animated zoomIn" style="animation-delay: 3s"><a href="http://localhost/PHPProjects/DAWproyecto-main/php/productos.php">Ver Productos</a></p>
+                        <p class="animated zoomIn" style="animation-delay: 3s"><a href="http://localhost/PHPProjects/DAWproyecto-main/php//aboutUs.php">¿Quiénes somos?</a></p>
                     </div>
                 </div>
                 <div class="item">
@@ -130,7 +133,8 @@
                     <div class="carousel-caption">
                         <h2 class="animated zoomIn" style="animation-delay: 1s">K&D <span> Peoples</span></h2>
                         <h3 class="animated fadeInLeft" style="animation-delay: 2s">La nueva manera de ver la vida</h3>
-                        <p class="animated zoomIn" style="animation-delay: 3s"><a href="http://localhost:8888/ProyectoFinal/php/aboutUs.php">¿Quiénes somos?</a></p>
+                        <p class="animated zoomIn" style="animation-delay: 3s"><a href="http://localhost/PHPProjects/DAWproyecto-main/php/productos.php">Ver Productos</a></p>
+                        <p class="animated zoomIn" style="animation-delay: 3s"><a href="http://localhost/PHPProjects/DAWproyecto-main/php/aboutUs.php">¿Quiénes somos?</a></p>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,8 @@
     <style>
         .container-fluid{
             color: white;
+            position:absolute;
+            bottom: 0px;
         }
         img {
             width: 100%;
