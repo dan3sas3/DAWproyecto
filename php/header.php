@@ -43,8 +43,9 @@
                   <a href="http://localhost/PHPProjects/DAWproyecto-main/php/registrarUsuario.php">Registrarse</a>
               </form>';
             }else{
+              echo  '<a style="font-size:15px;" href="http://localhost/PHPProjects/DAWproyecto-main/php/usuario.php">'.$_SESSION['mail'].'</a>';
               echo '<form role="form" action="includes/logout.inc.php" method="post">
-                  <button type="submit" class="btn btn-default" name="logout-submit">Logout</button>
+              <center> <button type="submit" class="btn btn-default" name="logout-submit">Logout</button></center>
               </form>';
             }
           ?>
@@ -55,8 +56,19 @@
          <div class="container">
              <li style="float:left">   <a href="#">  <span class="glyphicon glyphicon-align-justify" style="font-size:15px;cursor:pointer" onclick="openNav()"> </a> </span></li>
              <li style="float:right">  <a href="#">   <span class="glyphicon glyphicon-user" style="font-size:15px;cursor:pointer" onclick="openNav2()">   </a>  </span></li>
-             <li style="float:right"> <a href="http://localhost/PHPProjects/DAWproyecto-main/php/carrito.php"> <span class="glyphicon glyphicon-shopping-cart">  </a></span></li>
-             <li style="float:center"><a href="http://localhost/PHPProjects/DAWproyecto-main/php/inicio.php">Nombre Compañía </a></li>
+              <li style="float:right">
+                 <?php
+                      if(isset($_SESSION['mail'])){
+                        echo "<a href='http://localhost/PHPProjects/DAWproyecto-main/php/carrito.php'>";
+                        echo "<span class='glyphicon glyphicon-shopping-cart'>  </a></span>";
+                      }else{
+                        echo "<a href='javascript:;' onclick='openNav2()'>";
+                        echo "<span class='glyphicon glyphicon-shopping-cart'>  </a></span>";
+                      }
+                  ?>
+            </li>
+
+             <li style="float:center"><a href="http://localhost/PHPProjects/DAWproyecto-main/php/inicio.php">K&D Peoples</a></li>
          </div>
      </ul>
   </header>

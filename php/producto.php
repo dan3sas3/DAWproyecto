@@ -14,6 +14,16 @@
         .container-fluid{
             color: white;
         }
+        img {
+            width: 100%;
+            height: 360px;
+        }
+
+        .well{
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+        }
     </style>
     <title>Producto</title>
 </head>
@@ -39,20 +49,21 @@
                       echo "<div class='row'>";
                           echo "<div class='col'>";
                               echo "<h1>" .$rows['Tipo']."</h1>";
+                              echo "<br><br>";
                               echo "<div class='image_selected'>";
                                   ?><img src="../img/<?=$rows['Fotos']?>"><?php
                               echo "</div>";
                           echo "</div>";
-                          echo "<div class='col'> <br><br><br><br><br><br>";
+                          echo "<div class='col'> <br><br><br><br><br><br><br>";
                               echo "<div class='well'>";
                                   echo "<div class='product_name'><h2>" .$rows['Nombre']. "</h2></div>";
                                   echo "<div> <span class='product_price'><h2> $" .$rows['Precio']. " USD</h2></span> </div>";
                                   echo "<hr class='singleline'>";
-                                  echo "<div> <span class='product_info'><h4>" .$rows['Descripcion']. "</h4><span><br></div>";
+                                  echo "<div> <span class='product_info'><h4>" .$rows['Descripcion']. "</h4></span><br></div>";
                               echo "</div>";
                           echo "</div>";
                       echo "</div>";
-                  echo "</div> <br><br><br><br><br>";
+                  echo "</div> <br><br><br><br><br><br>";
 
 
                   echo "<div class='container-fluid' style=' background-color: #333; padding: 11px;'>";
